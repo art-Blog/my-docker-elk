@@ -1,0 +1,21 @@
+{
+  "name": "my-docker-elk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "apm": "docker-compose -f docker-compose.yml -f extensions/apm-server/apm-server-compose.yml up",
+    "docker": "docker-compose up"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/partypeopleland/my-docker-elk.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/partypeopleland/my-docker-elk/issues"
+  },
+  "homepage": "https://github.com/partypeopleland/my-docker-elk#readme"
+}
