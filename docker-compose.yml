@@ -54,16 +54,16 @@ services:
     depends_on:
       - elasticsearch
 
-  filebeat:
-    build: filebeat/
-    volumes:
-      - ./filebeat/config:/etc/filebeat
-      - D:\MoneyInWebLog:/logs
-    networks:
-      - elk
-    depends_on:
-      - elasticsearch
-    restart: unless-stopped
+  # filebeat:
+  #   build: filebeat/
+  #   volumes:
+  #     - ./filebeat/config:/etc/filebeat
+  #     - D:\MoneyInWebLog:/logs
+  #   networks:
+  #     - elk
+  #   depends_on:
+  #     - logstash
+  #   restart: unless-stopped
 
 networks:
   elk:

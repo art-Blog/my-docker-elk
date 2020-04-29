@@ -1,12 +1,8 @@
-filebeat.prospectors:
-  - input_type: log
+filebeat.inputs:
+  - type: log
     paths:
-      - /logs/*/log_Normal_*.log
-  document_type: moneyIn-Normal 
-
-  - input_type: log
-    paths:
-      - /logs/*/log_Extend_*.log
-  document_type: moneyIn-Extend
+      - /logs/*/*.log
+    document_type: mi-
+  
 output.logstash:
-  hosts: ["logstash:5000"]
+  hosts: ["localhost:5000"]

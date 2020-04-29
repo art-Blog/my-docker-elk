@@ -1,4 +1,3 @@
-FROM prameswar/filebeat
+ARG ELK_VERSION
 
-# Add your logstash plugins setup here
-# Example: RUN logstash-plugin install logstash-filter-json
+FROM docker.elastic.co/beats/filebeat:${ELK_VERSION}
