@@ -9,9 +9,9 @@ services:
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
       #指定data路徑(主資料)
-      - c:/docker-volumes/elasticsearch/data:/usr/share/elasticsearch/data
+      - d:/docker-volumes/elasticsearch/data:/usr/share/elasticsearch/data
       #指定logs路徑(日誌)
-      - c:/docker-volumes/elasticsearch/logs:/usr/share/elasticsearch/logs
+      - d:/docker-volumes/elasticsearch/logs:/usr/share/elasticsearch/logs
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -29,7 +29,7 @@ services:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
       #指定外部來源用
-      #- e:/docker-volumes:/usr/share/out-volumes
+      - d:/docker-volumes:/usr/share/out-volumes
     ports:
       - "5000:5000"
       - "9600:9600"
@@ -53,6 +53,17 @@ services:
       - elk
     depends_on:
       - elasticsearch
+
+  filebeat:
+    build: filebeat/
+    volumes:
+      - ./filebeat/config:/etc/filebeat
+      - D:\MoneyInWebLog:/logs
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
 
 networks:
   elk:

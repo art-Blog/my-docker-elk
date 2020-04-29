@@ -1,0 +1,12 @@
+filebeat.prospectors:
+  - input_type: log
+    paths:
+      - /logs/*/log_Normal_*.log
+  document_type: moneyIn-Normal 
+
+  - input_type: log
+    paths:
+      - /logs/*/log_Extend_*.log
+  document_type: moneyIn-Extend
+output.logstash:
+  hosts: ["logstash:5000"]
