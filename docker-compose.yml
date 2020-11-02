@@ -60,8 +60,7 @@ services:
        args:
          ELK_VERSION: $ELK_VERSION
      volumes:
-       - ./filebeat/config:/usr/share/filebeat
-       - d:\IISLog\W3SVC1:/logs
+       - d:\IISLog\W3SVC1:/logs:ro
      networks:
        - elk
      depends_on:
