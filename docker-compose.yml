@@ -54,19 +54,33 @@ services:
     depends_on:
       - elasticsearch
 
-  filebeat:
-     build: 
-       context: filebeat/
-       args:
-         ELK_VERSION: $ELK_VERSION
-     volumes:
-       - d:\IISLog\W3SVC1:/logs:ro
-     networks:
-       - elk
-     depends_on:
-       - logstash
-     restart: unless-stopped
+  apm-server:
+    build:
+      context: apm-server/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    ports:
+      - "8200:8200"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
 
+  filebeat:
+    build: 
+      context: filebeat/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - d:\IISLog\W3SVC1:/logs:ro
+    networks:
+      - elk
+    depends_on:
+      - logstash
+#     restart: unless-stopped
+
+
+        
 networks:
   elk:
     driver: bridge
